@@ -1,0 +1,31 @@
+{
+  "name": "tc_test_task",
+  "version": "1.0.0",
+  "description": "",
+  "main": "webpack.config.js",
+  "scripts": {
+    "dev": "webpack-dev-server --color",
+    "build": "npx webpack"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Kostyshyn/TC_test_task.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Kostyshyn/TC_test_task/issues"
+  },
+  "homepage": "https://github.com/Kostyshyn/TC_test_task#readme",
+  "devDependencies": {
+    "@types/angular": "^1.6.56",
+    "ts-loader": "^6.0.4",
+    "typescript": "^3.5.3",
+    "webpack": "^4.39.2",
+    "webpack-cli": "^3.3.7",
+    "webpack-dev-server": "^3.8.0"
+  },
+  "dependencies": {
+    "angular": "^1.7.8"
+  }
+}
