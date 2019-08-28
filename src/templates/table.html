@@ -1,0 +1,32 @@
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th scope="col" ng-repeat="col in displayColumns" ng-switch on="info[col].type">
+                <div ng-switch-when="checkbox" class="cell">
+                    <input 
+                        id="checkPermission-{{ col }}-master" 
+                        type="checkbox" 
+                        ng-checked="false">
+                    <label for="checkPermission-{{ col }}-master">Check All</label>
+                </div>
+                <div ng-switch-default class="cell">{{ info[col].label }}</div>
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr ng-repeat="row in data">
+            <td scope="row" ng-repeat="col in displayColumns" ng-switch on="info[col].type">
+                <div ng-switch-when="checkbox" class="cell"> 
+                    <input 
+                        id="checkPermission-{{ col }}-{{ row.section }}" 
+                        type="checkbox" 
+                        ng-model="row[col]"
+                        ng-disabled="info[col].related && !row[info[col].related]"
+                        ng-change="changePermission(row)">
+                    <label for="checkPermission-{{ col }}-{{ row.section }}">{{ info[col].label }}</label>
+                </div>
+                <div ng-switch-default class="cell">{{ row[col] }}</div>
+            </td>
+        </tr>
+    </tbody>
+</table>

@@ -1,11 +1,20 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en"  ng-app="App">
 <head>
 	<meta charset="UTF-8">
 	<title>TC</title>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 </head>
 <body>
-	
+	<section class="app" ng-controller="mainCtrl as vm">
+		
+        <tablecomponent 
+			display-columns="vm.displayColumns"
+        	data="vm.data"
+        	info="vm.info">
+        </tablecomponent>
+
+	</section>
 	<script type="text/javascript" src="bundle.js"></script>
 </body>
 </html>

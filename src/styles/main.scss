@@ -1,0 +1,25 @@
+body {
+	section.app {
+		max-width: 500px;
+		padding: 15px;
+		.table {
+			th, td {
+				text-align: center;
+			}
+			label, input[type="checkbox"] {
+				cursor: pointer;
+			}
+			label {
+				margin: 0 0 0 5px;
+			}
+			input:disabled ~ label {
+				color: #c1c1c1;
+			}
+			.cell {
+				display: flex;
+				align-items: center;
+				justify-content: center;
+			}
+		}
+	}
+}
