@@ -2,8 +2,9 @@ const angular = require('angular');
 const app = angular.module('App', []);
 
 import MainCtrl from './MainCtrl';
+import TableCtrl from './TableCtrl';
 
-app.directive('tablecomponent', function() {
+const tableDir = function() {
 	return {
 		scope: {
 			displayColumns: '=',
@@ -11,11 +12,10 @@ app.directive('tablecomponent', function() {
 			info: '='
 	    },
 		templateUrl: 'templates/table.html',
-		link: function(scope: any, el: any, attr: any) {
-			scope.changePermission = function(result: any): void {
-				scope.$emit('changePermission', result);
-			};
-		}
+		controller: TableCtrl,
+		controllerAs: 'vm'
 	}
-});
+}
+
+app.directive('tablecomponent', tableDir);
 app.controller('mainCtrl', MainCtrl);

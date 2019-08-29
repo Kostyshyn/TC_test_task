@@ -1,13 +1,20 @@
-<table class="table table-bordered">
+<table class="table table-bordered table-hover">
     <thead>
         <tr>
             <th scope="col" ng-repeat="col in displayColumns" ng-switch on="info[col].type">
                 <div ng-switch-when="checkbox" class="cell">
-                    <input 
-                        id="checkPermission-{{ col }}-master" 
-                        type="checkbox" 
-                        ng-checked="false">
-                    <label for="checkPermission-{{ col }}-master">Check All</label>
+                    <label 
+                        for="checkPermission-{{ col }}-master"
+                        ng-class="info[col].related && !vm.disabled(info[col].related, vm.checkboxes) ? 'dis' : ''">
+                        <input 
+                            id="checkPermission-{{ col }}-master" 
+                            type="checkbox" 
+                            ng-disabled="info[col].related && !vm.disabled(info[col].related, vm.checkboxes)"
+                            ng-model="vm.checkboxes[col]"
+                            ng-change="vm.masterCheck(col)">
+                        <span class="d-none d-sm-block">Check All</span>
+                        <span class="d-block d-sm-none">All</span>
+                    </label>
                 </div>
                 <div ng-switch-default class="cell">{{ info[col].label }}</div>
             </th>
@@ -17,13 +24,20 @@
         <tr ng-repeat="row in data">
             <td scope="row" ng-repeat="col in displayColumns" ng-switch on="info[col].type">
                 <div ng-switch-when="checkbox" class="cell"> 
-                    <input 
-                        id="checkPermission-{{ col }}-{{ row.section }}" 
-                        type="checkbox" 
-                        ng-model="row[col]"
-                        ng-disabled="info[col].related && !row[info[col].related]"
-                        ng-change="changePermission(row)">
-                    <label for="checkPermission-{{ col }}-{{ row.section }}">{{ info[col].label }}</label>
+                    <label 
+                        for="checkPermission-{{ col }}-{{ row.section }}"
+                        ng-class="info[col].related && !vm.disabled(info[col].related, row) ? 'dis' : ''">
+                        <input 
+                            id="checkPermission-{{ col }}-{{ row.section }}" 
+                            type="checkbox" 
+                            ng-model="row[col]"
+                            ng-disabled="info[col].related && !vm.disabled(info[col].related, row)"
+                            ng-change="vm.changePermission(col)">
+                        <span class="d-none d-sm-block">{{ info[col].label }}</span>
+                        <span class="d-block d-sm-none">
+                            <i class="fa" ng-class="info[col].icon"></i>
+                        </span>
+                    </label>
                 </div>
                 <div ng-switch-default class="cell">{{ row[col] }}</div>
             </td>
